@@ -1,0 +1,32 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+    <style>
+
+        a:link { color: #262223; text-decoration: none;}
+        a:visited { color: #262223; text-decoration: none;}
+        /*a:hover { color: black; text-decoration: none;}*/
+
+        .big_box {
+            background-color: #d9b3ff;
+            height: 720px;
+            text-align: center;
+        }
+
+        #start_message {
+            font-size: 80px;
+            font-family: 'Archivo Black', sans-serif;
+        }
+
+    </style>
+
+    <div style="line-height: 200%;"><br></div>
+
+    <div class="big_box">
+        <div style="line-height: 270px;"><br></div>
+        <div id="start_message">
+            <a href="/intro">Start</a>
+        </div>
+    </div>
+{{end}}

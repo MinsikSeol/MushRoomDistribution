@@ -1,0 +1,36 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+    <style>
+        .big_box {
+            background-color: plum;
+            height: 720px;
+            text-align: center;
+
+        }
+        /* Jeju Hallasan 폰트 */
+        @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+
+        #explanation {
+            font-size: 20px;
+            font-family: 'Jeju Hallasan', cursive;
+            margin: auto;
+            width: 80%;
+        }
+
+
+    </style>
+
+    <div style="line-height: 200%;"><br></div>
+
+    <div class="big_box">
+        <div style="line-height: 200px;"><br></div>
+        <div id="explanation">
+
+            맛이나 형태, 색깔, 찢어지는 모양 등 특징과의 연관성은 항상 일치하지 않으므로 독버섯을 구분하는 데 도움이 되지 않는다고 봐야 한다. 사실 일반인은 독버섯을 구별하는 방법을 알 필요도 없고, 어쭙잖게 알아봤자 전혀 소용없다. 간단히 생각해보면 답이 바로 나오는데, <b>독버섯이 사람 구별하기 좋게 특정 기준을 가지고 진화할 만한 이유가 전혀 없다.</b> 안전한 생활을 영위하려면 야생 버섯 = 독버섯 = 관상용 작물로 간주하는 것이 오히려 이롭다. 야생 버섯을 식용하고자 하는 경우에는 버섯 분류 전문가의 도움을 받거나 독버섯에 대해 잘 알고 있어야 하며, 어디서든 버섯을 보면 그냥 눈으로 확인하고 즐기는 관상용으로 만족하고 야생 버섯의 식용은 삼가는 것이 좋다. 가장 안전한 방법은 말리지 않은 상태의 대중적인 버섯을 시중에서 구입하는 것이다.
+            <br>
+            출처(나무위키) : https://namu.wiki/w/%EB%8F%85%EB%B2%84%EC%84%AF
+        </div>
+    </div>
+{{end}}

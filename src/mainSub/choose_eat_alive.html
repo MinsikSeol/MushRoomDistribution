@@ -1,0 +1,77 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+  <style>
+    @font-face {
+      font-family: 'ONE-Mobile-POP';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    .photo {
+      font-size: 20px;
+      font-family: 'ONE-Mobile-POP', cursive;
+      margin: auto;
+    }
+
+  </style>
+
+  <div style="line-height: 200%;"><br></div>
+
+  <div style="position: relative; max-width: 100%; text-align: center">
+    {{if eq .HealthMe 0}}
+      <div class="page" style="background-color:#ffcc99">
+        <div style="line-height: 200px;"><br></div>
+        <div class="photo">
+
+          <img src="/src/static/image/{{index .MushroomNames .CurrentIndex}}.png" alt="is this mushroom?" width="200" height="200">
+          <br><br>
+
+          당신은 굶어죽었다!<br>본인의 체력관리에 집중하셔야겠습니다~
+          <br>
+          <div style="font-size: 40px">당신이 버린 이 버섯의 이름은 .. {{index .MushroomNames .CurrentIndex}} !!</div>
+          <br>
+          {{if index .MushroomsEdible .CurrentIndex}}
+            그리고 이것은 먹을 수 있는 버섯이었습니다. <br><br>
+          {{else}}
+            그리고 이것은 독버섯이었습니다. <br><br>
+          {{end}}
+          <form action="/result" method="post" style="display: inline-block">
+            <input type="submit" class="btn btn-danger btn-lg" name="dead" value="결과창으로 이동" />
+          </form>
+        </div>
+      </div>
+    {{else}}
+      <div class="page" style="background-color:#99ff99">
+        <div style="line-height: 200px;"><br></div>
+        <div class="photo">
+
+          <img src="/src/static/image/{{index .MushroomNames .CurrentIndex}}.png" alt="is this mushroom?" width="200" height="200">
+          <br><br>
+
+          당신은 살았다!
+          <br>
+          <div style="font-size: 40px">당신이 먹은 이 버섯의 이름은 .. {{index .MushroomNames .CurrentIndex}} !!</div>
+          <br>
+          <form action="/Question0" method="post" style="display: inline-block">
+            <input type="submit" class="btn btn-success btn-lg" name="alive" value="계속....." />
+          </form>
+
+        </div>
+      </div>
+    {{end}}
+  </div>
+
+  <script>
+    history.pushState(null, null, "http://localhost:8080/you_alive");
+    window.onpopstate = function(event) {
+      history.go(1);
+    };
+  </script>
+
+{{end}}
+
+
+{{/*            <button type="button" class="btn btn-success btn-lg" onclick="location.href='/Question0';">계속....</button>*/}}
