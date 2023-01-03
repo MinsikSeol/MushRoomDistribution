@@ -1,0 +1,40 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+  <style>
+
+    a:link { color: #262223; text-decoration: none;}
+    a:visited { color: #262223; text-decoration: none;}
+    /*a:hover { color: black; text-decoration: none;}*/
+
+    .big_box {
+      background-color: #d9b3ff;
+      height: 720px;
+      text-align: center;
+    }
+
+    #nick_name_submit {
+      font-size: 80px;
+      font-family: 'Archivo Black', sans-serif;
+    }
+
+  </style>
+
+  <div style="line-height: 200%;"><br></div>
+
+  <div class="big_box">
+    <div style="line-height: 270px;"><br></div>
+    <div id="nick_name_submit">
+{{/*      //main.go의 mainpage 함수의 intro Referrer 바꾸는것 잊지 말기!!*/}}
+{{/*      <a href="/intro">Start</a>*/}}
+      <form class="form-signin" action="/intro" method="get">
+        <h2 class="form-signin-heading">닉네임을 입력해주세요.</h2>
+{{/*        <label for="inputNickname" class="sr-only">Nickname</label>*/}}
+        <input type="text" name="password" class="form-control" placeholder="Nickname" required>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Start</button>
+      </form>
+    </div>
+  </div>
+{{end}}

@@ -1,0 +1,29 @@
+/*body { margin: 0; padding: 0; }*/
+
+.page {
+    position: absolute;
+    width: 100%;
+    height: max-content;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.page_Other {
+    position: absolute;
+    width: 100%;
+    height: max-content;
+    align-items: center;
+    justify-content: center;
+}
+
+#progress_red {
+    color: red;
+}
+
+
+#colour {
+    color: red;
+}

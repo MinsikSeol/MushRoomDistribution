@@ -1,0 +1,294 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+    <style>
+        @font-face {
+            font-family: 'MICEGothic Bold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .photo {
+            font-size: 24px;
+            /*font-family: 'Grandstander', sans-serif;*/
+            font-family: 'Jua', cursive;
+            margin: auto;
+        }
+
+        .backgroundColor {
+            background-color:#d9b3ff;
+        }
+
+        form {
+
+        }
+
+    </style>
+
+    <div style="line-height: 200%;"><br></div>
+
+    <div style="position: relative; max-width: 100%; text-align: center">
+        <div class="page backgroundColor">
+            <div class="photo">
+
+
+                {{if eq .CurrentStage 13}}
+                <br><br>
+                <div style="font-family: 'MICEGothic Bold', cursive;">
+                    축하합니다! 당신은 무사히 생존했습니다! <br><br>
+                    <button type="button" class="btn btn-success btn-lg" onclick="location.href='/result';">결과창으로 이동</button>
+                </div>
+                <br><br>
+
+                {{else}}
+
+                <br>
+                <div style="font-size: 40px; font-weight: normal;">
+                    {{if eq .CurrentStage 0}}
+                        Stage 1
+
+{{/*                        <br>*/}}
+{{/*                        {{.LocalCookie}}*/}}
+
+                        <br><br>
+                    {{else}}
+                        Stage {{.CurrentStage}}
+
+{{/*                        <br>*/}}
+{{/*                        {{.LocalCookie}}*/}}
+
+                        <br><br>
+                    {{end}}
+                </div>
+
+{{/*                                {{index .MushroomsEdible .CurrentIndex}}<br>*/}}
+
+                <script type="text/javascript">
+                    const CanThrow = 5 - {{.ThrowCounts}}
+                    if (CanThrow > 0){
+                        document.write(
+                            `
+                        {{if eq .FriendAlive true}}
+                            <div class="nav" style="background-color: #d9b3ff; width: 100%; font-size: 2rem; font-family:'Jua', cursive;">
+                                <div class="nav-item mx-auto">내 포만감 게이지</div>
+                                <div class="nav-item mx-auto">친구의 포만감 게이지</div>
+                            </div>
+                            <div class="nav" style="background-color: #d9b3ff;">
+                                {{if eq .HealthMe 25}}
+                                    {{if eq .HealthHe 25}}
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{.HealthMe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{.HealthHe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    {{else}}
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{.HealthMe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{.HealthHe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    {{end}}
+                                {{else}}
+                                    {{if eq .HealthHe 25}}
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{.HealthMe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{.HealthHe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    {{else}}
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{.HealthMe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{.HealthHe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    {{end}}
+                                {{end}}
+                            </div>
+                            <br>
+                            Throw 남은 기회: ${CanThrow}
+                            <br>
+                            <img src='/src/static/image/{{index .MushroomNames .CurrentIndex}}.png' alt="is this mushroom?" width="200" height="200">
+                            <br><br>
+                            <div style="font-size:30px;">Will you eat this mushroom?</div>
+                            {{if index .MushroomsEdible .CurrentIndex}}
+                                <form action="/you_alive" method="post" style="display: inline-block;"><input type="submit" class="btn btn-success btn-lg btn-block" name="eat_this" value="eat this"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{if eq .HealthMe 25}}
+                                <form action="/you_alive" method="get" style="display: inline-block;"><input type="submit" class="btn btn-danger btn-lg btn-block" name="starve_to_death" value="throw away"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                <form action="/you_alive" method="get" style="display: inline-block;"><input type="submit" class="btn btn-warning btn-lg btn-block" name="starve_to_death" value="give to my friend"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{else}}
+                                <form action="/Question0" method="post" style="display: inline-block;"><input type="submit" class="btn btn-danger btn-lg btn-block" name="throw_away" value="throw away"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                <form action="/friend_alive" method="post" style="display: inline-block;"><input type="submit" class="btn btn-warning btn-lg btn-block" name="alive" value="give to my friend"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{end}}
+                            {{else}}
+                                <form action="/you_dead" method="post" style="display: inline-block;"><input type="submit" class="btn btn-success btn-lg btn-block" name="eat_this" value="eat this"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{if eq .HealthMe 25}}
+                                <form action="/you_alive" method="get" style="display: inline-block;"><input type="submit" class="btn btn-danger btn-lg btn-block" name="starve_to_death" value="throw away"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                <form action="/friend_dead" method="get" style="display: inline-block;"><input type="submit" class="btn btn-warning btn-lg btn-block" name="starve_to_death" value="give to my friend"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{/* 특별 경우: 나와 친구 동시에 끗 */}}
+                                {{else}}
+                                <form action="/Question0" method="post" style="display: inline-block;"><input type="submit" class="btn btn-danger btn-lg btn-block" name="throw_away" value="throw away"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                <form action="/friend_dead" method="post" style="display: inline-block;"><input type="submit" class="btn btn-warning btn-lg btn-block" name="dead" value="give to my friend"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{end}}
+                            {{end}}
+
+                        {{else}}
+                            <div id="menu" style="text-align: center; background-color: #d9b3ff; width: 100%;">
+                                내 포만감 게이지
+                            </div>
+
+                            <div class="nav" style="background-color: #d9b3ff;">
+                                    {{if eq .HealthMe 25}}
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{.HealthMe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    {{else}}
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{.HealthMe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    {{end}}
+                            </div>
+                            <br>
+                            Throw 남은 기회: ${CanThrow} <br>
+                            <img src='/src/static/image/{{index .MushroomNames .CurrentIndex}}.png' alt="is this mushroom?" width="200" height="200">
+                            <br><br>
+                            <div style="font-size:30px;">Will you eat this mushroom?</div>
+                            {{if index .MushroomsEdible .CurrentIndex}}
+                                <form action="/you_alive" method="post" style="display: inline-block;"><input type="submit" class="btn btn-success btn-lg btn-block" name="eat_this" value="eat this"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{if eq .HealthMe 25}}
+                                <form action="/you_alive" method="get" style="display: inline-block;"><input type="submit" class="btn btn-danger btn-lg btn-block" name="starve_to_death" value="throw away"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{else}}
+                                <form action="/Question0" method="post" style="display: inline-block;"><input type="submit" class="btn btn-danger btn-lg btn-block" name="throw_away" value="throw away"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{end}}
+                            {{else}}
+                                <form action="/you_dead" method="post" style="display: inline-block;"><input type="submit" class="btn btn-success btn-lg btn-block" name="eat_this" value="eat this"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{if eq .HealthMe 25}}
+                                <form action="/you_alive" method="get" style="display: inline-block;"><input type="submit" class="btn btn-danger btn-lg btn-block" name="starve_to_death" value="throw away"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{else}}
+                                <form action="/Question0" method="post" style="display: inline-block;"><input type="submit" class="btn btn-danger btn-lg btn-block" name="throw_away" value="throw away"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{end}}
+                            {{end}}
+                        {{end}}
+
+                            `
+                        )
+                    } else {
+                        document.write(
+                            `
+                        {{if eq .FriendAlive true}}
+                            <div class="nav" style="background-color: #d9b3ff; width: 100%; font-size: 2rem; font-family:'Jua', cursive;">
+                                <div class="nav-item mx-auto">내 포만감 게이지</div>
+                                <div class="nav-item mx-auto">친구의 포만감 게이지</div>
+                            </div>
+                            <div class="nav" style="background-color: #d9b3ff;">
+                                {{if eq .HealthMe 25}}
+                                    {{if eq .HealthHe 25}}
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{.HealthMe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{.HealthHe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    {{else}}
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{.HealthMe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{.HealthHe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    {{end}}
+                                {{else}}
+                                    {{if eq .HealthHe 25}}
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{.HealthMe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{.HealthHe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    {{else}}
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{.HealthMe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{.HealthHe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    {{end}}
+                                {{end}}
+                            </div>
+                            <br>
+                            Throw 남은 기회: ${CanThrow} <br>
+                            <img src='/src/static/image/{{index .MushroomNames .CurrentIndex}}.png' alt="is this mushroom?" width="200" height="200">
+                            <br><br>
+                            <div style="font-size:30px;">Will you eat this mushroom?</div>
+                            {{if index .MushroomsEdible .CurrentIndex}}
+                                <form action="/you_alive" method="post" style="display: inline-block;"><input type="submit" class="btn btn-success btn-lg btn-block" name="eat_this" value="eat this"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{if eq .HealthMe 25}}
+                                <form action="/you_alive" method="get" style="display: inline-block;"><input type="submit" class="btn btn-warning btn-lg btn-block" name="starve_to_death" value="give to my friend"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{else}}
+                                <form action="/friend_alive" method="post" style="display: inline-block;"><input type="submit" class="btn btn-warning btn-lg btn-block" name="alive" value="give to my friend"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                {{end}}
+                            {{else}}
+                                <form action="/you_dead" method="post" style="display: inline-block;"><input type="submit" class="btn btn-success btn-lg btn-block" name="eat_this" value="eat this"  style="width:300px;height:40px;font-size:30px;" /></form>
+                                <form action="/friend_dead" method="post" style="display: inline-block;"><input type="submit" class="btn btn-warning btn-lg btn-block" name="dead" value="give to my friend"  style="width:300px;height:40px;font-size:30px;" /></form>
+                            {{end}}
+                        {{else}}
+                            <div id="menu" style="text-align: center; background-color: #d9b3ff; width: 100%;">
+                                내 포만감 게이지
+                            </div>
+
+                            <div class="nav" style="background-color: #d9b3ff;">
+                                    {{if eq .HealthMe 25}}
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{.HealthMe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    {{else}}
+                                        <div class="progress nav-item mx-auto" style="text-align: center; align-items: center; width: 40%; height:20px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{.HealthMe}}%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    {{end}}
+                            </div>
+                            <br>
+                            Throw 남은 기회: ${CanThrow} <br>
+                            <img src='/src/static/image/{{index .MushroomNames .CurrentIndex}}.png' alt="is this mushroom?" width="200" height="200">
+                            <br><br>
+                            <div style="font-size:30px;">Will you eat this mushroom?</div>
+                            {{if index .MushroomsEdible .CurrentIndex}}
+                                <form action="/you_alive" method="post" style="display: inline-block;"><input type="submit" class="btn btn-success btn-lg btn-block" name="eat_this" value="eat this"  style="width:300px;height:40px;font-size:30px;" /></form>
+                            {{else}}
+                                <form action="/you_dead" method="post" style="display: inline-block;"><input type="submit" class="btn btn-success btn-lg btn-block" name="eat_this" value="eat this"  style="width:300px;height:40px;font-size:30px;" /></form>
+                            {{end}}
+                        {{end}}
+
+                            `
+                        )
+                    }
+                </script>
+
+                <br>
+                <br>
+
+                <span style="font-family: 'MICEGothic Bold', sans-serif; ">
+                    <button type="button" class="btn btn-info btn-lg" onclick="location.href='/';">처 음 으 로</button>
+                </span>
+                <div style="line-height: 60px;"><br></div>
+
+                {{end}}
+
+
+            </div>
+        </div>
+    </div>
+
+{{/*    <script>*/}}
+{{/*        history.pushState(null, null, "http://localhost:8080/Question0");*/}}
+{{/*        window.onpopstate = function(event) {*/}}
+{{/*            history.go(1);*/}}
+{{/*        };*/}}ㅛ
+{{/*    </script>*/}}
+
+{{end}}

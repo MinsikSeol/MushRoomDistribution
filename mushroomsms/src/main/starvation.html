@@ -1,0 +1,46 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+  <style>
+    @font-face {
+      font-family: 'ONE-Mobile-POP';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    .dead {
+      font-size: 30px;
+      font-family: 'ONE-Mobile-POP', cursive;
+      margin: auto;
+    }
+
+
+  </style>
+
+  <div style="line-height: 200%;"><br></div>
+
+  <div style="position: relative; max-width: 100%; text-align: center">
+    <div class="page_Other" style="background-color: #ffcc99;">
+      <div style="line-height: 100px;"><br></div>
+      <div class="dead">
+
+        <br><br>
+        <img src="/src/static/image/mushroom_YJ.jpg" alt="is this mushroom?" width="200" height="200">
+        <br><br>
+        당신은 굶어죽었다!
+        <br>
+        버섯을 조금 더 빠르게 선택하셔야겠네요~
+        <br><br>
+        <form action="/result" method="post" style="display: inline-block">
+          <input type="submit" class="btn btn-danger btn-lg" name="dead" value="결과창으로 이동" />
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+
+{{end}}

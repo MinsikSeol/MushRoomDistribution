@@ -1,0 +1,176 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+    <style>
+        @font-face {
+            font-family: 'MICEGothic Bold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-01@1.0/MICEGothic Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'ONE-Mobile-POP';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+
+    <div style="line-height: 200%;"><br></div>
+
+    <div style="position: relative; max-width: 100%; text-align: center">
+        <div class="page" style="font-size: 24px;
+            margin: auto; background-color:#ffdf80;">
+            <div style="line-height: 30px;"><br></div>
+            <div style="font-family: 'ONE-Mobile-POP', sans-serif; margin: 10%;">
+
+                {{/*                {{.CurrentIndex}}<br>*/}}
+
+                {{if eq .MeAlive false}}
+                    <script type="text/javascript">
+                        const stage = {{.CurrentIndex}}
+                        if (stage >= 0 && stage <= 3) {
+                            document.write(`
+                            <span style="overflow:hidden; white-space:nowrap;">당신은.. <span style="font-size: 40px;">[버섯 알못]</span></span>`)
+                        } else if (stage >= 4 && stage <= 7) {
+                            document.write(`
+                            <span style="overflow:hidden; white-space:nowrap;">당신은.. <span style="font-size: 40px;">[버섯 뉴비]</span></span>`)
+                        } else { /* (stage <= 8 && stage <= 11) */
+                            document.write(`
+                            <span style="overflow:hidden; white-space:nowrap;">당신은.. <span style="font-size: 40px;">[버섯 친구]</span></span>`)
+                        }
+                    </script>
+                {{end}}
+
+                <br>
+
+                {{if eq .CurrentIndex 0}}
+                <img src="/src/static/image/mushroom_c.png" alt="is this mushroom?" width="250" height="250">
+                <br>
+                당신에게서 버섯 알못의 냄새가 폴폴 나는군요!
+                {{else if eq .CurrentIndex 1}}
+                <img src="/src/static/image/mushroom_c.png" alt="is this mushroom?" width="250" height="250">
+                <br>
+                당신에게서 버섯 알못의 냄새가 폴폴 나는군요!
+
+                {{else if eq .CurrentIndex 2}}
+                <img src="/src/static/image/mushroom_c.png" alt="is this mushroom?" width="250" height="250">
+                <br>
+                당신에게서 버섯 알못의 냄새가 폴폴 나는군요!
+                {{else if eq .CurrentIndex 3}}
+                <img src="/src/static/image/mushroom_c.png" alt="is this mushroom?" width="250" height="250">
+                <br>
+                당신에게서 버섯 알못의 냄새가 폴폴 나는군요!
+
+                {{/**/}}
+                {{/**/}}
+
+                {{else if eq .CurrentIndex 4}}
+                <img src="/src/static/image/mushroom_e.png" alt="is this mushroom?" width="250" height="250">
+                <br>
+                슬슬 감을 익히는 단계 같아 보입니다. 벌써 지루한 건 아니죠? 앞으로 5개의 타이틀이 남아있습니다!
+                {{else if eq .CurrentIndex 5}}
+                <img src="/src/static/image/mushroom_e.png" alt="is this mushroom?" width="250" height="250">
+                <br>
+                슬슬 감을 익히는 단계 같아 보입니다. 벌써 지루한 건 아니죠? 앞으로 5개의 타이틀이 남아있습니다!
+                {{else if eq .CurrentIndex 6}}
+                <img src="/src/static/image/mushroom_e.png" alt="is this mushroom?" width="250" height="250">
+                <br>
+                어느정도 독버섯을 판별해내고 있는 것 같습니다. 조금 만 더 힘을 내주세요~ 앞으로 5개의 타이틀이 남아있습니다!
+                {{else if eq .CurrentIndex 7}}
+                <img src="/src/static/image/mushroom_e.png" alt="is this mushroom?" width="250" height="250">
+                <br>
+                어느정도 독버섯을 판별해내고 있는 것 같습니다. 조금 만 더 힘을 내주세요~ 앞으로 5개의 타이틀이 남아있습니다!
+                {{/**/}}
+                {{/**/}}
+                {{else if eq .CurrentIndex 8}}
+                <img src="/src/static/image/mushroom_YJ.jpg" alt="is this mushroom?" width="250" height="250">
+                <br>
+                상당한 확률로 독버섯을 구분할 수 있는 능력을 가졌습니다. 하지만 [버섯 친구] 다음의 타이틀이 궁금하지 않으세요? 앞으로 4개의 타이틀이 남아있습니다!
+
+                {{else if eq .CurrentIndex 9}}
+                <img src="/src/static/image/mushroom_YJ.jpg" alt="is this mushroom?" width="250" height="250">
+                <br>
+                상당한 확률로 독버섯을 구분할 수 있는 능력을 가졌습니다. 하지만 [버섯 친구] 다음의 타이틀이 궁금하지 않으세요? 앞으로 4개의 타이틀이 남아있습니다!
+                {{else if eq .CurrentIndex 10}}
+                <img src="/src/static/image/mushroom_YJ.jpg" alt="is this mushroom?" width="250" height="250">
+                <br>
+                상당한 확률로 독버섯을 구분할 수 있는 능력을 가졌습니다. 하지만 [버섯 친구] 다음의 타이틀이 궁금하지 않으세요? 앞으로 4개의 타이틀이 남아있습니다!
+                {{else if eq .CurrentIndex 11}}
+                <img src="/src/static/image/mushroom_YJ.jpg" alt="is this mushroom?" width="250" height="250">
+                <br>
+                상당한 확률로 독버섯을 구분할 수 있는 능력을 가졌습니다. 하지만 [버섯 친구] 다음의 타이틀이 궁금하지 않으세요? 앞으로 4개의 타이틀이 남아있습니다!
+                {{/**/}}
+                {{/**/}}
+                {{else if eq .CurrentIndex 12}}
+                {{if eq .MeAlive true}}
+                {{if eq .FriendAlive true}}
+                <script type="text/javascript">
+                    const HealthSum = {{.HealthMe}} + {{.HealthHe}}
+                    if (HealthSum >= 150) {
+                        document.write(`<span>.. 당신은 <span style="font-size: 40px;">[버섯 마스터]!</span></span>
+                                        <img src="/src/static/image/mushroom_d.png" alt="is this mushroom?" width="250" height="250">
+                                        <br>
+                                        <div>나와 친구는 매우 건강한 상태로 집에 돌아갈 수 있었다. 친구는 나에게 연신 고마움을 표현하면서 다음에 밥도 사주겠다고 한다. 그 밥에는 맛있는 버섯이 들어가있을까? 궁금해 죽겠다. 친구도 나도 다음에 또 산을 방문해 맛있는 식용버섯을 찾아다니기로 했다. 이 얼마나 재밌는 인생인가!</div>
+                                        <br>
+                                         플레이해주셔서 감사합니다.
+                                        <br>
+                                        - True Ending -`)
+                    } else if (HealthSum >= 100) {
+                        document.write(`<span>.. 당신은 <span style="font-size: 40px;">[버섯 박사]</span></span>
+                                        <img src="/src/static/image/mushroom_a.png" alt="is this mushroom?" width="250" height="250">
+                                        <br>
+                                        <div>둘은 조금 허기진 상태로 집에 돌아오는데 성공했다. 친구와 나는 절대로 그 산에는 다시 들어가지 않기로 다짐했다. 하지만 나는 버섯 박사이지 않은가! 용기가 샘솟은 나는 다른 친구와 함께 몰래 다시 한 번 산을 찾아오겠다는 생각을 했다..</div>`)
+                    } else {
+                        document.write(`<span>.. 당신은 <span style="font-size: 40px;">[버섯 석사]</span></span>
+                                        <img src="/src/static/image/mushroom_f.png" alt="is this mushroom?" width="250" height="250">
+                                        <br>
+                                        <div>우리 둘은 겨우 빠져나오는데 성공했다! 참말이지, 살아나온 것만으로 어디인가... 하늘에 감사할 따름이다. 하지만 나는 버섯 박사이지 않은가! 용기가 샘솟은 나는 다른 친구와 함께 몰래 다시 한 번 산을 찾아오겠다는 생각을 했다.. </div>`)
+                    }
+                </script>
+                {{else}}
+                  <div>당신은.. <span style="font-size: 40px;">[버섯 대학원생]</span></div>
+                  <img src="/src/static/image/mushroom_b.png" alt="is this mushroom?" width="250" height="250">
+                  <br>
+                  산에서 버섯을 캐먹으며 전전긍긍하며 돌아다니던 당신은 마침내
+                  마지막 스테이지까지 생존하셨습니다!
+                  <br>
+                    결국 친구는 살리지 못한 채 산을 내려왔다. 마음이 너무 아팠다. 버섯을 더 잘 알게 된 지금, 과거로 돌아가게 된다면 친구를 살릴 수 있을것만 같은 마음이 든다..
+                {{end}}
+
+                {{else}}
+                    거의 다 왔는데 탈락하고 말았네요! 곧 있으면 버섯 박사가 될 수 있을텐데..
+                {{end}}
+                {{end}}
+
+                <br>
+                {{if eq .MeAlive false}}
+                    안타깝지만 산에서 생존하지 못했습니다. 그렇지만 여러 번 플레이하면서 수많은 버섯들에 익숙해지다 보면 산에서 쉽게 탈출할 수 있을 것입니다. 파이팅!
+                {{end}}
+
+                <br><br>
+                {{/*            만약 문제 발생시 POST로 하지 않아서 일수도*/}}
+
+                <button type="button" class="btn btn-info btn-lg" onclick="location.href='/intro';"
+                        style="font-family: 'MICEGothic Bold', sans-serif;">다 시 하 기
+                </button>
+                &#160&#160
+                <button type="button" class="btn btn-dark btn-lg" onclick="location.href='/';"
+                        style="font-family: 'MICEGothic Bold', sans-serif;">처 음 으 로
+                </button>
+{{/*                <form action="/" method="post" style="display: inline-block;"><input type="submit" class="btn btn-info btn-lg" name="return" value="다 시 하 기"  style="font-family: 'MICEGothic Bold', sans-serif;" /></form>*/}}
+
+                &#160&#160
+                <a id="kakao-link-btn" href="javascript:kakaoShare()">
+                    <img src="https://developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_medium.png"
+                         style="height: 30px;"/> 카카오톡 공유하기
+                </a>
+
+
+            </div>
+        </div>
+
+    </div>
+{{end}}
